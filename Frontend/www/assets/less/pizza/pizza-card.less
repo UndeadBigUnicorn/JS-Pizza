@@ -35,3 +35,55 @@
 .nav-link{
   color: @orangeColor;
 }
+
+#flag-bottom {
+  box-sizing: content-box;
+  height: 110px;
+  width: 100px;
+  line-height: 1em;
+  left: 18px;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid transparent;
+  text-align: center;
+  line-height: 20px;
+  position: fixed;
+  bottom: 0;
+  margin-bottom:0;
+  box-sizing: content-box;
+  padding-top: 15px;
+  background: @orangeColor;
+  color: white;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+#flag-bottom:before {
+  content: "";
+  position: absolute;
+  height: 50%;
+  width: 60%;
+  left: -10px; /*width of border*/
+  top: -20px;
+  z-index: -2;
+  background: @orangeColor;
+  -webkit-transform: skewY(20deg);
+  transform: skewY(20deg);
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+}
+#flag-bottom:after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  background: @orangeColor;
+  width: 60%;
+  right: -10px; /*width of border*/
+  top: -20px;
+  z-index: -2;
+  -webkit-transform: skewY(-20deg);
+  transform: skewY(-20deg);
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
