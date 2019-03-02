@@ -176,3 +176,38 @@ padding-bottom: 0!important;
      background-color: rgba(162, 168, 175, 0.644);
     color: @orangeColor;
 }
+
+.item-image{
+    height: 100px;
+    top:0;
+    float: right;
+    width: 100px;
+    transform: translateX(65%);
+}
+
+button{
+    cursor: pointer;
+    display: inline-block;
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+button::after {
+    background: purple;
+    border-radius: 8px 8px 8px 0px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    color: #FFF;
+    content: attr(data-tooltip); 
+    margin-top: -24px;
+    opacity: 0;
+    padding: 3px 7px;
+    position: absolute;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+}
+        
+button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
