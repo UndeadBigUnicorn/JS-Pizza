@@ -1,12 +1,46 @@
 .pizza-card {
+    background: white;
+    border-radius: 5px;
+    padding: 0.7em;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    width: 300px;
+    margin-bottom: 1em;
+
   img {
     max-width: 250px;
   }
 
+  .btn{
+    background: @orangeColor;
+    color:white;
+    font-weight: bold;
+  }
+
+  .pizza-sizes-small{
+    text-align: center;
+    width: 20%;
+    display: inline-block;
+  }
+
+  .pizza-sizes-big{
+    margin-left: 30%;
+    display: inline-block;
+    text-align: center;
+    width: 20%;
+  }
+
+  .pizza-price{
+    font-weight: bold;
+    font-size: 20px;
+    margin-top:1em;
+    line-height: 10px;
+  }
 
   h3 {
-    color: @mainColor;
-    background-color: lighten(@mainColor, 45%);
+    color: @orangeColor;
+    font-weight: bold;
+    margin-bottom: 0; 
   }
 }
 
