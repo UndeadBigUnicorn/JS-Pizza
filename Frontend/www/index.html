@@ -34,87 +34,111 @@
         <div class="down-line col-lg-10"><span id="lt-574px" class="text-bold">Пiцца</span></div>
 
     </nav>
+    <!-- <div class="container"> -->
+    <div class="column">
+        <div class="right-column-title"> <span>Замовлення</span><span class="circular-amount">3</span>
+            <a class="clear-right-column" href="#">Очистити замовлення</a>
+        </div>
+        <div id="order-list">
+            <div class="item">
+                <div class="item-first-line">
+                    <span class="item-title">BBQ (Мала)</span>
+                    <img class="item-image" src="assets/images/pizza_2.jpg">
+                </div>
+                <div class="item-second-line">
+                    <i class='fas'>&#xf338;</i> <span class="item-pizza-size">30</span>&nbsp;&nbsp;
+                    <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">440</span>
+                </div>
+                <div class="item-third-line">
+                    <div class="first-column">
+                        <span class="item-price">556 грн</span>
+                    </div>
+                    <div class="second-column">
+                        <button class="decrement circular-button red-button" data-tooltip="Remove amount"><i class='fas'>&#xf068;</i></button>
+                        <span class="amount">1</span>
+                        <button class="increment circular-button green-button" data-tooltip="Add amount"><i class='fas'>&#xf067;</i></button>
+                    </div>
+                    <div class="third-column">
+                        <button class="circular-button button-remove" data-tooltip="Remove product"><i class="fa">&#xf00d;</i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-first-line">
+                    <span class="item-title">Руссо Густо (Мала)</span>
+                    <img class="item-image" src="assets/images/pizza_3.jpg">
+                </div>
+                <div class="item-second-line">
+                    <i class='fas'>&#xf338;</i> <span class="item-pizza-size">30</span>&nbsp;&nbsp;
+                    <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">400</span>
+                </div>
+                <div class="item-third-line">
+                    <div class="first-column">
+                        <span class="item-price">175 грн</span>
+                    </div>
+                    <div class="second-column">
+                        <button class="decrement circular-button red-button" data-tooltip="Remove amount"><i class='fas'>&#xf068;</i></button>
+                        <span class="amount">1</span>
+                        <button class="increment circular-button green-button" data-tooltip="Add amount"><i class='fas'>&#xf067;</i></button>
+                    </div>
+                    <div class="third-column">
+                        <button class="circular-button button-remove" data-tooltip="Remove product"><i class="fa">&#xf00d;</i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-first-line">
+                    <span class="item-title">Мiксовий поло (Велика)</span>
+                    <img class="item-image" src="assets/images/pizza_4.jpg">
+                </div>
+                <div class="item-second-line">
+                    <i class='fas'>&#xf338;</i> <span class="item-pizza-size">40</span>&nbsp;&nbsp;
+                    <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">780</span>
+                </div>
+                <div class="item-third-line">
+                    <div class="first-column">
+                        <span class="item-price">243 грн</span>
+                    </div>
+                    <div class="second-column">
+                        <button class="decrement circular-button red-button" data-tooltip="Remove amount"><i class='fas'>&#xf068;</i></button>
+                        <span class="amount">1</span>
+                        <button class="increment circular-button green-button" data-tooltip="Add amount"><i class='fas'>&#xf067;</i></button>
+                    </div>
+                    <div class="third-column">
+                        <button class="circular-button button-remove" data-tooltip="Remove product"><i class="fa">&#xf00d;</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-column-bottom">
+            <span>Сума замовлення</span>
+            <span id="total-price">1000 грн</span>
+            <button id="btn-order" class="btn btn-lg btn-warning my-2 my-sm-6">Замовити</button>
+        </div>
+    </div>
     <div class="container">
-        <div class="column">
-            <div class="right-column-title"> <span>Замовлення</span><span class="circular-amount">3</span>
-                <a class="clear-right-column" href="#">Очистити замовлення</a>
-            </div>
-            <div id="order-list">
-                <div class="item">
-                    <div class="item-first-line">
-                        <span class="item-title">BBQ (Мала)</span>
-                        <img class="item-image" src="assets/images/pizza_2.jpg">
-                    </div>
-                    <div class="item-second-line">
-                        <i class='fas'>&#xf338;</i> <span class="item-pizza-size">30</span>&nbsp;&nbsp;
-                        <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">440</span>
-                    </div>
-                    <div class="item-third-line">
-                        <div class="first-column">
-                            <span class="item-price">556 грн</span>
-                        </div>
-                        <div class="second-column">
-                            <button class="decrement circular-button red-button" data-tooltip="Remove amount"><i class='fas'>&#xf068;</i></button>
-                            <span class="amount">1</span>
-                            <button class="increment circular-button green-button" data-tooltip="Add amount"><i class='fas'>&#xf067;</i></button>
-                        </div>
-                        <div class="third-column">
-                            <button class="circular-button button-remove" data-tooltip="Remove product"><i class="fa">&#xf00d;</i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-first-line">
-                        <span class="item-title">Руссо Густо (Мала)</span>
-                        <img class="item-image" src="assets/images/pizza_3.jpg">
-                    </div>
-                    <div class="item-second-line">
-                        <i class='fas'>&#xf338;</i> <span class="item-pizza-size">30</span>&nbsp;&nbsp;
-                        <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">400</span>
-                    </div>
-                    <div class="item-third-line">
-                        <div class="first-column">
-                            <span class="item-price">175 грн</span>
-                        </div>
-                        <div class="second-column">
-                            <button class="decrement circular-button red-button" data-tooltip="Remove amount"><i class='fas'>&#xf068;</i></button>
-                            <span class="amount">1</span>
-                            <button class="increment circular-button green-button" data-tooltip="Add amount"><i class='fas'>&#xf067;</i></button>
-                        </div>
-                        <div class="third-column">
-                            <button class="circular-button button-remove" data-tooltip="Remove product"><i class="fa">&#xf00d;</i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="item-first-line">
-                        <span class="item-title">Мiксовий поло (Велика)</span>
-                        <img class="item-image" src="assets/images/pizza_4.jpg">
-                    </div>
-                    <div class="item-second-line">
-                        <i class='fas'>&#xf338;</i> <span class="item-pizza-size">40</span>&nbsp;&nbsp;
-                        <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">780</span>
-                    </div>
-                    <div class="item-third-line">
-                        <div class="first-column">
-                            <span class="item-price">243 грн</span>
-                        </div>
-                        <div class="second-column">
-                            <button class="decrement circular-button red-button" data-tooltip="Remove amount"><i class='fas'>&#xf068;</i></button>
-                            <span class="amount">1</span>
-                            <button class="increment circular-button green-button" data-tooltip="Add amount"><i class='fas'>&#xf067;</i></button>
-                        </div>
-                        <div class="third-column">
-                            <button class="circular-button button-remove" data-tooltip="Remove product"><i class="fa">&#xf00d;</i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="right-column-bottom">
-                <span>Сума замовлення</span>
-                <span id="total-price">1000 грн</span>
-                <button id="btn-order" class="btn btn-lg btn-warning my-2 my-sm-6">Замовити</button>
-            </div>
+        <div class="navs">
+            <span class="navs-title">Усi пiцци</span><span class="circular-amount">8</span>
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Усi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">M'яснi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">З ананасами</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">З грибами</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">З морепродуктами</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Вега</a>
+                </li>
+            </ul>
         </div>
         <div class="row flex-xl-nowrap" id="pizza_list">
             <div class="col-sm-6 col-md-4">
