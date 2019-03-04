@@ -121,3 +121,33 @@
   border-top: 10px solid transparent;
   border-right: 10px solid transparent;
 }
+
+.new-pizza::after{
+  content: "Нова";
+  display: inline-block;
+  position: absolute;
+  background: rgb(226, 68, 68);
+  border-radius: 3px; 
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  padding: 0.3em;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  right: 32px;
+  top: -13px;
+}
+
+.popular-pizza::after{
+  content: "Популярна";
+  display: inline-block;
+  position: absolute;
+  background: rgb(10, 180, 75);
+  border-radius: 3px; 
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  padding: 0.3em;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  right: 32px;
+  top: -13px;
+}
