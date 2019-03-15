@@ -17,6 +17,33 @@ function getIngredientsArray(pizza) {
 }
 
    %>
+   <div class="col-sm-6 col-md-4">
+        <% if(pizza.is_new) { %>
+    <div class="thumbnail pizza-card new-pizza">
+        <% } else if(pizza.is_popular) {%>
+    <div class="thumbnail pizza-card popular-pizza">
+        <% } %>
+        <img src="<%= pizza.icon %>">
+        <div class="caption">
+            <h3><%= pizza.title %></h3>
+            <span class="pizza-category text-muted"><%= pizza.type %></span>
+            <p class="pizza-description">   <%= getIngredientsArray(pizza).join(", ") %></p>
+            <span class="pizza-sizes-small">
+                    <i class='fas'>&#xf338;</i> <span class="pizza-size">30</span>&nbsp;&nbsp;
+                    <i class='fas'>&#xf562;</i> <span class="pizza-weight">370</span>
+                    <span class="pizza-price">99 грн.</span>
+                    <a href="#" class="btn">Купити</a>
+            </span>
+            <span class="pizza-sizes-big">
+                    <i class='fas'>&#xf338;</i> <span class="pizza-size">40</span>&nbsp;&nbsp;
+                    <i class='fas'>&#xf562;</i> <span class="pizza-weight">600</span>
+                    <span class="pizza-price">169 грн.</span>
+                    <a href="#" class="btn">Купити</a>
+            </span>
+        </div>
+    </div>
+</div>
+<!-- 
 <div class="col-md-6 col-lg-4 pizza-card">
     <div class="thumbnail">
         <img class="pizza-icon" src="<%= pizza.icon %>" alt="Pizza">
@@ -33,7 +60,7 @@ function getIngredientsArray(pizza) {
             <div class="description">
                 <%= getIngredientsArray(pizza).join(", ") %>
             </div>
-        </div>
+        </div> -->
 
         <!-- Перед тим щоб показати кнопку необхідно переконатися, що піца має великий розмір -->
         <button class="btn btn-primary buy-big">Купити велику</button>

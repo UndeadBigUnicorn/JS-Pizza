@@ -3,7 +3,7 @@
  */
 var Templates = require('../Templates');
 var PizzaCart = require('./PizzaCart');
-var Pizza_List = require('../Pizza_List');
+var Pizza_List = JSON.parse(JSON.stringify(Templates.pizza_list));
 
 //HTML едемент куди будуть додаватися піци
 var $pizza_list = $("#pizza_list");
@@ -48,7 +48,7 @@ function filterPizza(filter) {
 
 function initialiseMenu() {
     //Показуємо усі піци
-    showPizzaList(Pizza_List)
+    showPizzaList(JSON.parse(Pizza_List));
 }
 
 exports.filterPizza = filterPizza;
