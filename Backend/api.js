@@ -1,8 +1,9 @@
 /**
  * Created by chaika on 09.02.16.
  */
-var Pizza_List = require('./data/Pizza_List');
+var db = require('./models/dbworker');
 
+console.log(db);
 exports.getPizzaList = function(req, res) {
     res.send(Pizza_List);
 };
