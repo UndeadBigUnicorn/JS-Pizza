@@ -3,9 +3,10 @@
  */
 var db = require('./models/dbworker');
 
-console.log(db);
 exports.getPizzaList = function(req, res) {
-    res.send(Pizza_List);
+    db.getPizzaList((Pizza_List)=>{
+        res.send(Pizza_List);
+    })
 };
 
 exports.createOrder = function(req, res) {
