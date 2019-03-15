@@ -5,7 +5,7 @@ var db = require('./models/dbworker');
 
 exports.getPizzaList = function(req, res) {
     db.getPizzaList((Pizza_List)=>{
-        res.send(Pizza_List);
+        return Pizza_List;
     })
 };
 
