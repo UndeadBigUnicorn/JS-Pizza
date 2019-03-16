@@ -41,6 +41,15 @@ function startServer(port) {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
+    //Сесiя
+    var session = require('express-session');
+    app.use(session({
+        resave: false,
+        saveUninitialized: true,
+        secret: 'supersecret',
+        cookie: true
+  }));
+
     //Налаштовуємо сторінки
     configureEndpoints(app);
 

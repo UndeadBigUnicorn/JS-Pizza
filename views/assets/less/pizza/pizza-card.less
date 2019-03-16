@@ -6,6 +6,8 @@
     box-sizing: border-box;
     width: 300px;
     margin-bottom: 1em;
+    display: inline-block;
+    margin: 20px;
 
   img {
     max-width: 250px;
@@ -50,6 +52,7 @@
 
 .container{
   padding-top: 7%;
+  // text-align: center;
   margin-left:10%;
 }
 
@@ -122,10 +125,10 @@
   border-right: 10px solid transparent;
 }
 
-.new-pizza::after{
+.new-pizza::before{
   content: "Нова";
   display: inline-block;
-  position: absolute;
+  position: relative;
   background: rgb(226, 68, 68);
   border-radius: 3px; 
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -133,14 +136,14 @@
   color: white;
   font-weight: bold;
   font-size: 20px;
-  right: 32px;
-  top: -13px;
+  left:  150px;
+  top: -23px;
 }
 
-.popular-pizza::after{
+.popular-pizza::before{
   content: "Популярна";
   display: inline-block;
-  position: absolute;
+  position: relative;
   background: rgb(10, 180, 75);
   border-radius: 3px; 
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -148,6 +151,6 @@
   color: white;
   font-weight: bold;
   font-size: 20px;
-  right: 32px;
-  top: -13px;
+  left: 130px;
+  top: -23px;
 }

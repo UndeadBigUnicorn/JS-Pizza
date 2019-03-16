@@ -5,10 +5,11 @@
 var db = require('./models/dbworker');
 
 exports.mainPage = function(req, res) {
+   let category = req.session.category || "All";
    db.getPizzaList((Pizza_List)=>{
-       console.log(2)
         res.render('mainPage', {
-            pageTitle: 'Вибір Піци', 
+            pageTitle: 'Вибір Піци',
+            searchCategory: category,
             pizzas: Pizza_List
         });
     })

@@ -1,34 +1,58 @@
 <% include common/header.ejs %>
 <% include common/right_column.ejs %>
 
-    <div class="container">
-        <% include common/navs.ejs %>
-        <div class="row flex-xl-nowrap" id="pizza_list">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail pizza-card new-pizza">
-                    <img src="assets/images/pizza_1.jpg">
-                    <div class="caption">
-                        <h3>Iмпрезза</h3>
-                        <span class="pizza-category text-muted">M'ясна пiцца</span>
-                        <p class="pizza-description">Балик, салямi, куриця, сир моцарелла, сир рокфорд, ананаси, томатна паста, петрушка.</p>
-                        <span class="pizza-sizes-small">
-                                <i class='fas'>&#xf338;</i> <span class="pizza-size">30</span>&nbsp;&nbsp;
-                                <i class='fas'>&#xf562;</i> <span class="pizza-weight">370</span>
-                                <span class="pizza-price">99 грн.</span>
-                                <a href="#" class="btn">Купити</a>
-                        </span>
-                        <span class="pizza-sizes-big">
-                                <i class='fas'>&#xf338;</i> <span class="pizza-size">40</span>&nbsp;&nbsp;
-                                <i class='fas'>&#xf562;</i> <span class="pizza-weight">600</span>
-                                <span class="pizza-price">169 грн.</span>
-                                <a href="#" class="btn">Купити</a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-
+<div class="container">
+    <%- include('common/navs.ejs',{category: searchCategory, amount: pizzas.length}); %>
+    <% for(var i=0; i<pizzas.length;i++) {%>
+        <% if (pizzas[i].is_new) {%>
+            <div class="thumbnail pizza-card new-pizza">
+        <% }else if (pizzas[i].is_popular) {%>
+            <div class="thumbnail pizza-card popular-pizza">
+        <% }else {%>
+            <div class="thumbnail pizza-card">
+        <%} %>
+        <img src="<%= pizzas[i].icon %>">
+        <div class="caption">
+            <h3>
+                <%= pizzas[i].title %>
+            </h3>
+            <span class="pizza-category text-muted">
+                <%= pizzas[i].type %></span>
+                <% console.log(pizzas[i].content); %>
+            <p class="pizza-description"><%Object.keys(pizzas[i].content).forEach(function(k){%>
+                <%=pizzas[i].content[k] %>,
+                <%}); %> </p>
+                <% if (!pizzas[i].small_size) {%>
+                    <span class="pizza-sizes-big">
+                        <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].big_size.size%></span>&nbsp;&nbsp;
+                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.wieght%></span>
+                        <span class="pizza-price"><%=pizzas[i].big_size.price%> грн.</span>
+                        <a href="#" class="btn">Купити</a>
+                    </span>
+                <% }else if (!pizzas[i].big_size) {%>
+                    <span class="pizza-sizes-small">
+                        <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].small_size.size%></span>&nbsp;&nbsp;
+                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].small_size.weight%></span>
+                        <span class="pizza-price"><%=pizzas[i].small_size.price%> грн.</span>
+                        <a href="#" class="btn">Купити</a>
+                    </span>
+                <% }else {%>
+                    <span class="pizza-sizes-small">
+                        <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].small_size.size%></span>&nbsp;&nbsp;
+                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].small_size.weight%></span>
+                        <span class="pizza-price"><%=pizzas[i].small_size.price%> грн.</span>
+                        <a href="#" class="btn">Купити</a>
+                    </span>
+                    <span class="pizza-sizes-big">
+                        <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].big_size.size%></span>&nbsp;&nbsp;
+                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.wieght%></span>
+                        <span class="pizza-price"><%=pizzas[i].big_size.price%> грн.</span>
+                        <a href="#" class="btn">Купити</a>
+                    </span>
+                <%} %>
         </div>
     </div>
+    <%} %>
+</div>
 
 <% include common/footer.ejs %>
