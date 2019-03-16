@@ -19,6 +19,8 @@ function configureEndpoints(app) {
     //Головна сторінка
     app.get('/', pages.mainPage);
 
+    app.get('/category/:category', pages.category);
+
     //Сторінка замовлення
     app.get('/order.html', pages.orderPage);
 

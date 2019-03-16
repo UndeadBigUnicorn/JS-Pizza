@@ -18,14 +18,13 @@
             </h3>
             <span class="pizza-category text-muted">
                 <%= pizzas[i].type %></span>
-                <% console.log(pizzas[i].content); %>
             <p class="pizza-description"><%Object.keys(pizzas[i].content).forEach(function(k){%>
                 <%=pizzas[i].content[k] %>,
                 <%}); %> </p>
                 <% if (!pizzas[i].small_size) {%>
                     <span class="pizza-sizes-big">
                         <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].big_size.size%></span>&nbsp;&nbsp;
-                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.wieght%></span>
+                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.weight%></span>
                         <span class="pizza-price"><%=pizzas[i].big_size.price%> грн.</span>
                         <a href="#" class="btn">Купити</a>
                     </span>
@@ -45,7 +44,7 @@
                     </span>
                     <span class="pizza-sizes-big">
                         <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].big_size.size%></span>&nbsp;&nbsp;
-                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.wieght%></span>
+                        <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.weight%></span>
                         <span class="pizza-price"><%=pizzas[i].big_size.price%> грн.</span>
                         <a href="#" class="btn">Купити</a>
                     </span>

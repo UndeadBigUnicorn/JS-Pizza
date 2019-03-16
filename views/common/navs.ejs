@@ -2,22 +2,46 @@
         <span class="navs-title">Усi пiцци</span><span class="circular-amount"><%=amount%></span>
         <ul class="nav nav-pills">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Усi</a>
+                <% if (category=="All") {%>
+                <a class="nav-link active" href="/category/All">Усi</a>
+                <% }else {%>
+                <a class="nav-link" href="/category/All">Усi</a>
+                <%} %>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">M'яснi</a>
+                <% if (category=="Meat") {%>
+                <a class="nav-link active" href="/category/Meat">M'яснi</a>
+                <% }else {%>
+                <a class="nav-link" href="/category/Meat">M'яснi</a>
+                <%} %>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">З ананасами</a>
+                <% if (category=="Pineapple") {%>
+                <a class="nav-link active" href="/category/Pineapple">З ананасами</a>
+                <% }else {%>
+                <a class="nav-link" href="/category/Pineapple">З ананасами</a>
+                <%} %>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">З грибами</a>
+                <% if (category=="Mushrooms") {%>
+                <a class="nav-link active" href="/category/Mushrooms">З грибами</a>
+                <% }else {%>
+                <a class="nav-link" href="/category/Mushrooms">З грибами</a>
+                <%} %>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">З морепродуктами</a>
+                 <% if (category=="Sea") {%>
+                <a class="nav-link active" href="/category/Sea">З морепродуктами</a>
+                <% }else {%>
+                <a class="nav-link" href="/category/Sea">З морепродуктами</a>
+                <%} %>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Вега</a>
+                <% if (category=="Vega") {%>
+                <a class="nav-link active" href="/category/Vega">Вега</a>
+                <% }else {%>
+                <a class="nav-link" href="/category/Vega">Вега</a>
+                <%} %>
             </li>
         </ul>
     </div>

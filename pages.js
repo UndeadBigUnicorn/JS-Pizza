@@ -6,7 +6,7 @@ var db = require('./models/dbworker');
 
 exports.mainPage = function(req, res) {
    let category = req.session.category || "All";
-   db.getPizzaList((Pizza_List)=>{
+   db.getPizzaList(category,(Pizza_List)=>{
         res.render('mainPage', {
             pageTitle: 'Вибір Піци',
             searchCategory: category,
@@ -14,6 +14,11 @@ exports.mainPage = function(req, res) {
         });
     })
    
+};
+
+exports.category = function(req,res) {
+    req.session.category = req.params.category;
+    res.redirect('/');
 };
 
 exports.orderPage = function(req, res) {
