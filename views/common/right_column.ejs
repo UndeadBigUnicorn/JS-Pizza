@@ -1,35 +1,36 @@
 <div class="column">
-        <div class="right-column-title"> <span>Замовлення</span><span class="circular-amount">3</span>
+        <div class="right-column-title"> <span>Замовлення</span><span id="order-amount" class="circular-amount">3</span>
             <a class="clear-right-column" href="#">Очистити замовлення</a>
         </div>
         <div id="order-list">
-            <div class="item">
-                <div class="item-first-line">
-                    <span class="item-title">BBQ (Мала)</span>
-                    <img class="item-image" src="assets/images/pizza_2.jpg">
-                </div>
-                <div class="item-second-line">
-                    <i class='fas'>&#xf338;</i> <span class="item-pizza-size">30</span>&nbsp;&nbsp;
-                    <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">440</span>
-                </div>
-                <div class="item-third-line">
-                    <div class="first-column">
-                        <span class="item-price">556 грн</span>
-                    </div>
-                    <div class="second-column">
-                        <button class="decrement circular-button red-button" data-tooltip="Remove amount"><i class='fas'>&#xf068;</i></button>
-                        <span class="amount">1</span>
-                        <button class="increment circular-button green-button" data-tooltip="Add amount"><i class='fas'>&#xf067;</i></button>
-                    </div>
-                    <div class="third-column">
-                        <button class="circular-button button-remove" data-tooltip="Remove product"><i class="fa">&#xf00d;</i></button>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="right-column-bottom">
             <span>Сума замовлення</span>
             <span id="total-price">1000 грн</span>
             <button id="btn-order" class="btn btn-lg btn-warning my-2 my-sm-6">Замовити</button>
         </div>
-    </div>
+        <div id="order-item-template" class="item">
+            <div class="item-first-line">
+                <span class="item-title">BBQ (Мала)</span>
+                <img class="item-image" src="assets/images/pizza_2.jpg">
+            </div>
+            <div class="item-second-line">
+                <i class='fas'>&#xf338;</i> <span class="item-pizza-size">30</span>&nbsp;&nbsp;
+                <i class='fas'>&#xf562;</i> <span class="item-pizza-weight">440</span>
+            </div>
+            <div class="item-third-line">
+                <div class="first-column">
+                    <span class="item-price">556 грн</span>
+                </div>
+                <div class="second-column">
+                    <button class="decrement circular-button red-button" data-tooltip="Прибрати одну"><i class='fas'>&#xf068;</i></button>
+                    <span class="amount">1</span>
+                    <button class="increment circular-button green-button" data-tooltip="Додати одну"><i class='fas'>&#xf067;</i></button>
+                </div>
+                <div class="third-column">
+                    <button class="circular-button button-remove" data-tooltip="Видалити пiцу"><i class="fa">&#xf00d;</i></button>
+                </div>
+                <input class="item-id" type="hidden" name="item-id" val=""/>
+            </div>
+        </div>
+</div>

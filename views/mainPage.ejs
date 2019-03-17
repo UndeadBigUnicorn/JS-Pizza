@@ -11,9 +11,9 @@
         <% }else {%>
             <div class="thumbnail pizza-card">
         <%} %>
-        <img src="<%= pizzas[i].icon %>">
+        <img class="pizza-img" src="<%= pizzas[i].icon %>">
         <div class="caption">
-            <h3>
+            <h3 class="pizza-title">
                 <%= pizzas[i].title %>
             </h3>
             <span class="pizza-category text-muted">
@@ -25,28 +25,36 @@
                     <span class="pizza-sizes-big">
                         <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].big_size.size%></span>&nbsp;&nbsp;
                         <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.weight%></span>
-                        <span class="pizza-price"><%=pizzas[i].big_size.price%> грн.</span>
-                        <a href="#" class="btn">Купити</a>
+                        <span class="pizza-price"><%=pizzas[i].big_size.price%></span> грн.
+                        <button class="btn btn-buy-big" data-tooltip="Купити велику" data-id="<%=pizzas[i]._id%>">Купити</button>
                     </span>
                 <% }else if (!pizzas[i].big_size) {%>
                     <span class="pizza-sizes-small">
                         <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].small_size.size%></span>&nbsp;&nbsp;
                         <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].small_size.weight%></span>
-                        <span class="pizza-price"><%=pizzas[i].small_size.price%> грн.</span>
-                        <a href="#" class="btn">Купити</a>
+                        <% if (pizzas[i].small_size.price < 100) {%>
+                            <span class="pizza-price"><%=pizzas[i].small_size.price%></span><br/> грн.
+                        <% }else {%>
+                            <span class="pizza-price"><%=pizzas[i].small_size.price%></span> грн.
+                        <% }%>
+                        <button class="btn btn-buy-small" data-tooltip="Купити маленьку" data-id="<%=pizzas[i]._id%>">Купити</button>
                     </span>
                 <% }else {%>
                     <span class="pizza-sizes-small">
                         <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].small_size.size%></span>&nbsp;&nbsp;
                         <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].small_size.weight%></span>
-                        <span class="pizza-price"><%=pizzas[i].small_size.price%> грн.</span>
-                        <a href="#" class="btn">Купити</a>
+                        <% if (pizzas[i].small_size.price < 100) {%>
+                            <span class="pizza-price"><%=pizzas[i].small_size.price%></span><br/> грн.
+                        <% }else {%>
+                            <span class="pizza-price"><%=pizzas[i].small_size.price%></span> грн.
+                        <% }%>
+                        <button class="btn btn-buy-small" data-tooltip="Купити маленьку" data-id="<%=pizzas[i]._id%>">Купити</button>
                     </span>
                     <span class="pizza-sizes-big">
                         <i class='fas'>&#xf338;</i> <span class="pizza-size"><%=pizzas[i].big_size.size%></span>&nbsp;&nbsp;
                         <i class='fas'>&#xf562;</i> <span class="pizza-weight"><%=pizzas[i].big_size.weight%></span>
-                        <span class="pizza-price"><%=pizzas[i].big_size.price%> грн.</span>
-                        <a href="#" class="btn">Купити</a>
+                        <span class="pizza-price"><%=pizzas[i].big_size.price%></span> грн.
+                        <button class="btn btn-buy-big" data-tooltip="Купити велику" data-id="<%=pizzas[i]._id%>">Купити</button>
                     </span>
                 <%} %>
         </div>
