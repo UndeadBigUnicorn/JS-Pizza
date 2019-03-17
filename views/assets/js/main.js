@@ -1,10 +1,10 @@
 $(function () {
 
-    const ORDER_ITEM_TEMPLATE = $("#oreder-item-template");
+    const ORDER_ITEM_TEMPLATE = $("#order-item-template");
 
     if(!localStorage.pizzas) {
         $("#order-amount").text("0");
-        $("#order-list").text("Ви ще не зробили замовлення.");
+        $("#order-list-is-empty").show();
     } else {
         localStorage.pizzas.forEach( (element) => {
           addItemToList(element);
@@ -20,7 +20,6 @@ $(function () {
     });   
 
     function add_item(event, size) {
-        console.log(2);
         let _id = $(event.target).data("id");
         let img_path = $(event.target).closest(".pizza-card").find(".pizza-img").attr("src");
         let order_item_clone = ORDER_ITEM_TEMPLATE.clone();
@@ -39,7 +38,7 @@ $(function () {
         }
 
         renderItem(order_item_clone, {
-            _id : id,
+            _id : _id,
             title: title,
             pizza_size: pizza_size,
             pizza_weight: pizza_weight,
@@ -69,6 +68,9 @@ $(function () {
     }
 
     function renderItem(item, variables) {
+        $("#order-list-is-empty").hide();
+        let total_amount = Number($("#order-amount").text());
+        $("#order-amount").text(++total_amount);
         item.find(".item-id").val(variables.id);
         item.find(".item-title").text(variables.title);
         item.find(".item-pizza-size").text(variables.pizza_size);
@@ -77,111 +79,130 @@ $(function () {
         item.find(".item-image").text(variables.img_path);
         item.show();
         $("#order-list").append(item);
+        
+        let total_price = Number($("#total-price").text());
+        total_price += Number(variables.pizza_price);
+        $("#total-price").text(total_price);
 
         let amount = 1;
         item.find(".increment").click(()=> {
             let total_price = Number($("#total-price").text());
-            total_price += variables.pizza_price;
+            total_price += Number(variables.pizza_price);
+            $("#total-price").text(total_price);
+            let total_amount = Number($("#order-amount").text());
+            $("#order-amount").text(++total_amount);
             amount++;
-            $(this).closest(".second-column").find(".amount").text(amount);
+            $(item).find(".second-column").find(".amount").text(amount);
         });
 
         item.find(".decrement").click(()=> {
             let total_price = Number($("#total-price").text());
-            total_price -= variables.pizza_price;
+            total_price -= Number(variables.pizza_price);
+            $("#total-price").text(total_price);
+            let total_amount = Number($("#order-amount").text());
+            $("#order-amount").text(--total_amount);
             amount--;
             if(amount == 0){
                 item.hide();
             } else {
-                $(this).closest(".second-column").find(".amount").text(amount);
+                $(item).find(".second-column").find(".amount").text(amount);
             }
         });
 
         item.find(".button-remove").click(()=> {
             let total_price = Number($("#total-price").text());
-            total_price -= variables.pizza_price * amount;
+            total_price -= Number(variables.pizza_price) * amount;
+            $("#total-price").text(total_price);
+            let total_amount = Number($("#order-amount").text());
+            total_amount -= amount;
+            $("#order-amount").text(total_amount);
             item.hide();
         });
     }
 
-	var PRODUCT_TEMPLATE_RIGHT = $('#product-item-right');
-	var PRODUCT_TEMPLATE_LEFT = $('#product-item-left');
+    $("#clear-right-column").click(()=>{
+        localStorage.pizzas=[];
+        $("#order-list").text("");
+    })
+
+// 	var PRODUCT_TEMPLATE_RIGHT = $('#product-item-right');
+// 	var PRODUCT_TEMPLATE_LEFT = $('#product-item-left');
 
     
-	function add_item(productName) {
+// 	function add_item(productName) {
         
-		var left_clone = PRODUCT_TEMPLATE_LEFT.clone();
-		var right_clone = PRODUCT_TEMPLATE_RIGHT.clone();
+// 		var left_clone = PRODUCT_TEMPLATE_LEFT.clone();
+// 		var right_clone = PRODUCT_TEMPLATE_RIGHT.clone();
         
-		left_clone.find('.title').text(productName);
-		right_clone.find('#lable').text(productName);
-		left_clone.show();
-		right_clone.show();
+// 		left_clone.find('.title').text(productName);
+// 		right_clone.find('#lable').text(productName);
+// 		left_clone.show();
+// 		right_clone.show();
         
-		$('.left').append(left_clone);
-		$('#still').append(right_clone);
-        var amount = 1;
-		left_clone.find('.plus').click(function(){
-            amount++;
-            if (amount > 1)
-            	left_clone.find('.minus').css('background', 'red');
-            $(this).closest('.column').find('.amount').text(amount);
-            right_clone.find('.circular-amount').text(amount);
-		});
+// 		$('.left').append(left_clone);
+// 		$('#still').append(right_clone);
+//         var amount = 1;
+// 		left_clone.find('.plus').click(function(){
+//             amount++;
+//             if (amount > 1)
+//             	left_clone.find('.minus').css('background', 'red');
+//             $(this).closest('.column').find('.amount').text(amount);
+//             right_clone.find('.circular-amount').text(amount);
+// 		});
         
-        left_clone.find('.minus').click(function(){
-        	if (amount < 2)
-        		return;
-            amount--;
-            if (amount < 2)
-            	$(this).css('background', ' #ff8181');
-            $(this).closest('.column').find('.amount').text(amount);
-            right_clone.find('.circular-amount').text(amount);
-		});
+//         left_clone.find('.minus').click(function(){
+//         	if (amount < 2)
+//         		return;
+//             amount--;
+//             if (amount < 2)
+//             	$(this).css('background', ' #ff8181');
+//             $(this).closest('.column').find('.amount').text(amount);
+//             right_clone.find('.circular-amount').text(amount);
+// 		});
         
-        left_clone.find('.button-delete').click(function(){
-            left_clone.hide();
-            right_clone.hide();
-        });
+//         left_clone.find('.button-delete').click(function(){
+//             left_clone.hide();
+//             right_clone.hide();
+//         });
         
-        left_clone.find('.button-buy').click(function(){
-            left_clone.find('.plus').hide();
-        	left_clone.find('.minus').hide();
-        	left_clone.find('.button-buy').hide();
-        	left_clone.find('.button-delete').hide();
-        	left_clone.find('.not-buy').show();
-        	left_clone.find('.title').html('<s>' + productName + '</s>');
-        	right_clone.find('#lable').html('<s>' + productName + '</s>');
-            $('#bought').append(right_clone);
-        });
+//         left_clone.find('.button-buy').click(function(){
+//             left_clone.find('.plus').hide();
+//         	left_clone.find('.minus').hide();
+//         	left_clone.find('.button-buy').hide();
+//         	left_clone.find('.button-delete').hide();
+//         	left_clone.find('.not-buy').show();
+//         	left_clone.find('.title').html('<s>' + productName + '</s>');
+//         	right_clone.find('#lable').html('<s>' + productName + '</s>');
+//             $('#bought').append(right_clone);
+//         });
 
-        left_clone.find('.not-buy').click(function(){
-            left_clone.find('.plus').show();
-        	left_clone.find('.minus').show();
-        	left_clone.find('.button-buy').show();
-        	left_clone.find('.button-delete').show();
-        	left_clone.find('.not-buy').hide();
-        	right_clone.find('#lable').html(productName);
-        	left_clone.find('.title').html(productName);
-            $('#still').append(right_clone);
-        });
-	}
+//         left_clone.find('.not-buy').click(function(){
+//             left_clone.find('.plus').show();
+//         	left_clone.find('.minus').show();
+//         	left_clone.find('.button-buy').show();
+//         	left_clone.find('.button-delete').show();
+//         	left_clone.find('.not-buy').hide();
+//         	right_clone.find('#lable').html(productName);
+//         	left_clone.find('.title').html(productName);
+//             $('#still').append(right_clone);
+//         });
+// 	}
 
-	add_item("Помідори");
-	add_item("Морква");
-	add_item("Сир");
+// 	add_item("Помідори");
+// 	add_item("Морква");
+// 	add_item("Сир");
 
-	$('#add-button').click(function(){
-		var productName = $('#product-name').val();
-		$('#product-name').val('');
-		add_item(productName);
-	});
+// 	$('#add-button').click(function(){
+// 		var productName = $('#product-name').val();
+// 		$('#product-name').val('');
+// 		add_item(productName);
+// 	});
 
-	$(document).keypress(function (e) {
-    if (e.which == 13) {
-            $("#add-button").click();
-    }
-});
+// 	$(document).keypress(function (e) {
+//     if (e.which == 13) {
+//             $("#add-button").click();
+//     }
+// });
 
 
 });
