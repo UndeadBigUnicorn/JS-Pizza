@@ -1,18 +1,13 @@
 $(function () {
 
     const ORDER_ITEM_TEMPLATE = $("#order-item-template");
-//ocalStorage only supports strings. Use JSON.stringify() and JSON.parse().
-
-!!!!
-    if (!localStorage.pizzas) {
+//localStorage only supports strings. Use JSON.stringify() and JSON.parse().
+    if (!localStorage["pizzas"] || localStorage["pizzas"]=="[]") {
         $("#order-amount").text("0");
         $("#order-list-is-empty").show();
-        localStorage["pizzas"] = [];
+        localStorage["pizzas"] = "";
     } else {
-        let pizzas = localStorage["pizzas"];
-        pizzas.forEach((element) => {
-            addItemToList(element);
-        });
+        renderAllPizzas("refresh", 0);
     }
 
     $(document).on('click', '.btn-buy-small', (event) => {
@@ -43,33 +38,49 @@ $(function () {
         }
 
         if (index != -1) {
-            let pizzas = localStorage["pizzas"];
-            pizzas[index].amount++;
-            localStorage["pizzas"] = pizzas;
+            let pizzas = JSON.parse(localStorage["pizzas"]);
+            let amount = pizzas[index].amount;
+            pizzas[index].amount = ++amount;
+            localStorage["pizzas"] = JSON.stringify(pizzas);
+            // let total_price = Number($("#total-price").text());
+            // total_price += Number(pizza_price);
+            // $("#total-price").text(total_price);
+            // let total_amount = Number($("#order-amount").text());
+            // $("#order-amount").text(++total_amount);
+            renderAllPizzas("loaded", pizza_price);
+            return;
+        } else {
+            let pizzas = [];
+            if (localStorage["pizzas"]=="" || localStorage["pizzas"]=="[]") {
+                pizzas.push({
+                    id: _id,
+                    size: size,
+                    title: title,
+                    pizza_size: pizza_size,
+                    pizza_weight: pizza_weight,
+                    pizza_price: pizza_price,
+                    amount: 1,
+                    img_path: img_path
+                });
+            } else {
+                pizzas = JSON.parse(localStorage["pizzas"]);
+                pizzas.push({
+                    id: _id,
+                    size: size,
+                    title: title,
+                    pizza_size: pizza_size,
+                    pizza_weight: pizza_weight,
+                    pizza_price: pizza_price,
+                    amount: 1,
+                    img_path: img_path
+                });
+        }   
+            localStorage["pizzas"] = JSON.stringify(pizzas);
             let total_price = Number($("#total-price").text());
             total_price += Number(pizza_price);
             $("#total-price").text(total_price);
             let total_amount = Number($("#order-amount").text());
             $("#order-amount").text(++total_amount);
-            return;
-        } else {
-            if (!localStorage.pizzas) {
-                localStorage.setItem("pizzas", []);
-                console.log(localStorage);
-            }
-            console.log(localStorage)
-            let pizzas = localStorage["pizzas"];
-            pizzas.push({
-                id: _id,
-                size: size,
-                title: title,
-                pizza_size: pizza_size,
-                pizza_weight: pizza_weight,
-                pizza_price: pizza_price,
-                amount: 1,
-                img_path: img_path
-            });
-            localStorage["pizzas"] = pizzas;
 
         }
 
@@ -77,6 +88,7 @@ $(function () {
             id: _id,
             title: title,
             size: size,
+            amount: 1,
             pizza_size: pizza_size,
             pizza_weight: pizza_weight,
             pizza_price: pizza_price,
@@ -85,18 +97,22 @@ $(function () {
 
     }
 
-    function addItemToList(element) {
+    function addItemToList(element, mode) {
         let order_item_clone = ORDER_ITEM_TEMPLATE.clone();
-        if (element.size == "small") {
-            title += " (Мала)";
-        } else {
-            title += " (Велика)";
+        let total_price = Number($("#total-price").text());
+
+        if(mode=="refresh"){
+            total_price += Number(element.pizza_price)*Number(element.amount);
+            $("#total-price").text(total_price);
+            let total_amount = Number($("#order-amount").text())+Number(element.amount);
+            $("#order-amount").text(total_amount);
         }
 
         renderItem(order_item_clone, {
             id: element.id,
             size: element.size,
-            title: title,
+            title: element.title,
+            amount: element.amount,
             pizza_size: element.pizza_size,
             pizza_weight: element.pizza_weight,
             pizza_price: element.pizza_price,
@@ -107,23 +123,24 @@ $(function () {
 
     function renderItem(item, variables) {
         $("#order-list-is-empty").hide();
-        let total_amount = Number($("#order-amount").text());
-        $("#order-amount").text(++total_amount);
+        let amount = variables.amount;
+        // let total_amount = Number($("#order-amount").text());
+        // $("#order-amount").text(++total_amount);
         item.find(".item-id").val(variables.id);
         item.find(".item-title").text(variables.title);
         item.find(".item-pizza-size").text(variables.pizza_size);
         item.find(".item-pizza-weight").text(variables.pizza_weight);
         item.find(".item-price").text(variables.pizza_price);
         item.find(".item-image").text(variables.img_path);
+        item.find(".amount").text(amount);
         item.show();
         $("#order-list").append(item);
 
-        let total_price = Number($("#total-price").text());
-        total_price += Number(variables.pizza_price);
-        $("#total-price").text(total_price);
+        // let total_price = Number($("#total-price").text());
+        // total_price += Number(variables.pizza_price);
+        // $("#total-price").text(total_price);
 
         let index = getPizzaById(variables.id, variables.size);
-        let amount = 1;
         item.find(".increment").click(() => {
             let total_price = Number($("#total-price").text());
             total_price += Number(variables.pizza_price);
@@ -132,9 +149,9 @@ $(function () {
             $("#order-amount").text(++total_amount);
             amount++;
             $(item).find(".second-column").find(".amount").text(amount);
-            let pizzas = localStorage["pizzas"];
-            pizzas[index].amount++;
-            localStorage["pizzas"] = pizzas;
+            let pizzas = JSON.parse(localStorage["pizzas"]);
+            pizzas[index].amount = amount;
+            localStorage["pizzas"] = JSON.stringify(pizzas);
         });
 
         item.find(".decrement").click(() => {
@@ -146,14 +163,14 @@ $(function () {
             amount--;
             if (amount == 0) {
                 item.hide();
-                let pizzas = localStorage["pizzas"];
+                let pizzas = JSON.parse(localStorage["pizzas"]);
                 pizzas.splice(index, 1);
-                localStorage["pizzas"] = pizzas;
+                localStorage["pizzas"] = JSON.stringify(pizzas);
             } else {
                 $(item).find(".second-column").find(".amount").text(amount);
-                let pizzas = localStorage["pizzas"];
-                pizzas[index].amount--;
-                localStorage["pizzas"] = pizzas;
+                let pizzas = JSON.parse(localStorage["pizzas"]);
+                pizzas[index].amount==amount;
+                localStorage["pizzas"] = JSON.stringify(pizzas);
             }
         });
 
@@ -165,25 +182,49 @@ $(function () {
             total_amount -= amount;
             $("#order-amount").text(total_amount);
             item.hide();
-            let pizzas = localStorage["pizzas"];
+            let pizzas = JSON.parse(localStorage["pizzas"]);
             pizzas.splice(index, 1);
-            localStorage["pizzas"] = pizzas;
+            localStorage["pizzas"] = JSON.stringify(pizzas);
         });
     }
 
     $("#clear-right-column").click(() => {
-        delete localStorage["pizzas"];
+        localStorage["pizzas"]="";
         $("#order-list").text("");
+        $("#total-price").text("0");
+        $("#order-amount").text("0");
     });
 
     function getPizzaById(id, size) {
-        let pizzas = localStorage["pizzas"];
+        if(localStorage["pizzas"]=="" || localStorage["pizzas"]=="[]"){
+            return -1;
+        }
+        let pizzas = JSON.parse(localStorage["pizzas"]);
         for (var i = 0; i < pizzas.length; i++) {
             if (pizzas[i].id == id && pizzas[i].size == size) {
                 return i;
             }
         }
         return -1;
+    }
+
+    function renderAllPizzas(mode, price) {
+        $("#order-list").text("");
+        if(mode=="loaded"){
+            let total_amount = Number($("#order-amount").text());
+            total_amount++;
+            $("#order-amount").text(total_amount);
+            let total_price = Number($("#total-price").text())+Number(price);
+            $("#total-price").text(total_price);
+        } else {
+            $("#order-amount").text("0");
+            $("#total-price").text("0");
+        }
+        $("#total-amount").text("0");
+        let pizzas = JSON.parse(localStorage["pizzas"]);
+        pizzas.forEach((element) => {
+            addItemToList(element, mode);
+        });
     }
 
 });
