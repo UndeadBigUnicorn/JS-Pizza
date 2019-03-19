@@ -1,7 +1,7 @@
 $(function () {
 
     const ORDER_ITEM_TEMPLATE = $("#order-item-template");
-//localStorage only supports strings. Use JSON.stringify() and JSON.parse().
+
     if (!localStorage["pizzas"] || localStorage["pizzas"]=="[]") {
         $("#order-amount").text("0");
         $("#order-list-is-empty").show();
@@ -42,11 +42,6 @@ $(function () {
             let amount = pizzas[index].amount;
             pizzas[index].amount = ++amount;
             localStorage["pizzas"] = JSON.stringify(pizzas);
-            // let total_price = Number($("#total-price").text());
-            // total_price += Number(pizza_price);
-            // $("#total-price").text(total_price);
-            // let total_amount = Number($("#order-amount").text());
-            // $("#order-amount").text(++total_amount);
             renderAllPizzas("loaded", pizza_price);
             return;
         } else {
@@ -124,8 +119,6 @@ $(function () {
     function renderItem(item, variables) {
         $("#order-list-is-empty").hide();
         let amount = variables.amount;
-        // let total_amount = Number($("#order-amount").text());
-        // $("#order-amount").text(++total_amount);
         item.find(".item-id").val(variables.id);
         item.find(".item-title").text(variables.title);
         item.find(".item-pizza-size").text(variables.pizza_size);
@@ -135,10 +128,6 @@ $(function () {
         item.find(".amount").text(amount);
         item.show();
         $("#order-list").append(item);
-
-        // let total_price = Number($("#total-price").text());
-        // total_price += Number(variables.pizza_price);
-        // $("#total-price").text(total_price);
 
         let index = getPizzaById(variables.id, variables.size);
         item.find(".increment").click(() => {
