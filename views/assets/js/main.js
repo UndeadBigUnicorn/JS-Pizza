@@ -131,6 +131,9 @@ $(function () {
 
         let index = getPizzaById(variables.id, variables.size);
         item.find(".increment").click(() => {
+            let item_price = Number(item.find(".item-price").text());
+            item_price+=Number(variables.pizza_price);
+            item.find(".item-price").text(item_price);
             let total_price = Number($("#total-price").text());
             total_price += Number(variables.pizza_price);
             $("#total-price").text(total_price);
@@ -144,6 +147,9 @@ $(function () {
         });
 
         item.find(".decrement").click(() => {
+            let item_price = Number(item.find(".item-price").text());
+            item_price-=Number(variables.pizza_price);
+            item.find(".item-price").text(item_price);
             let total_price = Number($("#total-price").text());
             total_price -= Number(variables.pizza_price);
             $("#total-price").text(total_price);

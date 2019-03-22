@@ -22,5 +22,7 @@ exports.category = function(req,res) {
 };
 
 exports.orderPage = function(req, res) {
-    //TODO: implement
+    res.render('orderPage',{
+        pageTitle: 'Оформлення замовлення'
+    });
 };

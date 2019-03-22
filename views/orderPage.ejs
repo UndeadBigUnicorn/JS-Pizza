@@ -1,0 +1,40 @@
+<% include common/header.ejs %>
+<% include common/right_column.ejs %>
+
+<div class="container">
+    <div class="form-horizontal">
+        <h2>1. Контактнi данi</h2>
+        <div class="input-group-lg form-group">
+            <label class="control-label col-sm-2 label-text" for="name">Iм'я:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" placeholder="Тарас Шевченко">
+            </div>
+        </div>
+        <div id="name-error" class="errors">Введiть правильне iм'я</div>
+        <div class="input-group-lg form-group">
+            <label class="control-label col-sm-2 label-text" for="phone">Телефон:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="phone" placeholder="+380921234567">
+            </div> <br/>     
+        </div>
+        <div id="phone-error" class="errors">Введiть правильний телефон</div>
+        <div class="input-group-lg form-group">
+            <label class="control-label col-sm-2 label-text" for="adress">Адреса:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="adress" placeholder="вул. Спаська 2">
+            </div>
+        </div>
+        <div id="adress-error" class="errors">Введiть правильну адресу</div>
+        <div class="bd-callout bd-callout-warning">
+            <h4 id="conveying-meaning-to-assistive-technologies">Iнформацiя про замовлення</h4>
+             <span class="label-text">Приблизний час доставки:</span> невiдомий <br>
+             <span class="label-text">Адреса доставки:</span> невiдома
+        </div>
+        <div>
+            <button id="confrim-order" class="btn btn-lg btn-warning"
+                data-tooltip="Пiдтвердити замовлення">Далi</button>
+        </div>
+    </div>
+</div>
+<% include common/footer.ejs %>
+<script src="assets/js/order.js"></script>
