@@ -27,14 +27,20 @@
         <div id="adress-error" class="errors">Введiть правильну адресу</div>
         <div class="bd-callout bd-callout-warning">
             <h4 id="conveying-meaning-to-assistive-technologies">Iнформацiя про замовлення</h4>
-             <span class="label-text">Приблизний час доставки:</span> невiдомий <br>
-             <span class="label-text">Адреса доставки:</span> невiдома
+             <span class="label-text">Приблизний час доставки:</span><span id="order-time">невiдомий</span> <br>
+             <span class="label-text">Адреса доставки:</span><span id="order-adress">невiдома</span> 
         </div>
         <div>
             <button id="confrim-order" class="btn btn-lg btn-warning"
                 data-tooltip="Пiдтвердити замовлення">Далi</button>
         </div>
+        <div class="col-xs-12 google-map">
+            <div id="googleMap"></div>
+        </div>
     </div>
 </div>
 <% include common/footer.ejs %>
 <script src="assets/js/order.js"></script>
+<script	type="text/javascript"
+           src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8EfHXfhweZE-W19Uo2d_UIFrmKvOeMo">
+</script>
