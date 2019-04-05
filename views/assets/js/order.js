@@ -1,8 +1,6 @@
 $(function () {
 
     var adress = $("#adress");
-    var nameIsOk = false;
-    var telIsOk = false;
     var adressIsOk = true;
     var orderTime = $("#order-time");
     var orderAdress = $("#order-adress");
@@ -60,13 +58,12 @@ $(function () {
                 });
                 function createPath(coordinates, updateAdress) {
                     //console.log("coords:"+coordinates);
-                    geocodeLatLng(coordinates, function (err, adress) {
+                    geocodeLatLng(coordinates, function (err, adress1) {
                         //console.log("adress:"+adress);
                         if (!err) {//Дізналися адресу
-                            console.log(adress);
+                            console.log(adress1);
                             if (updateAdress) {
-                                adress.val("" + adress);
-                                checkAdress();
+                                adress.val("" + adress1);
                             }
                             if (!homeMarker) {
                                 homeMarker = new google.maps.Marker({
